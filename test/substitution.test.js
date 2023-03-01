@@ -45,7 +45,7 @@ describe("decoding a message", () => {
   it("decodes a message by using the given substitution alphabet", () => {
     const message = "hepfzgd";
     const alphabet = "poiuytrewqasdfghjklzxcvbnm";
-    const actual = substitution(message, alphabet);
+    const actual = substitution(message, alphabet, false);
     const expected = "phantom";
     expect(actual).to.equal(expected);
   });
@@ -55,7 +55,7 @@ describe("decoding a message", () => {
   it("works with any kind of key with unique characters", () => {
     const message = "h$ fzgd";
     const alphabet = " oiuytr$wqasdfghjklzxcvbnm";
-    const actual = substitution(message, alphabet);
+    const actual = substitution(message, alphabet, false);
     const expected = "phantom";
     expect(actual).to.equal(expected);
   });
@@ -64,7 +64,7 @@ describe("decoding a message", () => {
   it("maintains spaces", () => {
     const message = "hepfzgd lzknayk";
     const alphabet = "poiuytrewqasdfghjklzxcvbnm";
-    const actual = substitution(message, alphabet);
+    const actual = substitution(message, alphabet, false);
     const expected = "phantom stryker";
     expect(actual).to.equal(expected);
   });
@@ -73,7 +73,7 @@ describe("decoding a message", () => {
   it("ignores capital letters", () => {
     const message = "Hepfzgd LZKNAYK";
     const alphabet = "poiuytrewqasdfghjklzxcvbnm";
-    const actual = substitution(message, alphabet);
+    const actual = substitution(message, alphabet, false);
     const expected = "phantom stryker";
     expect(actual).to.equal(expected);
   });

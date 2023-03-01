@@ -56,7 +56,7 @@ describe("decoding a message", () => {
   it("decodes messages by shifting the letters in the opposite direction", () => {
     const message = "umfsytr";
     const shift = 5;
-    const actual = caesar(message, shift);
+    const actual = caesar(message, shift, false);
     const expected = "phantom";
     expect(actual).to.equal(expected);
   });
@@ -64,7 +64,7 @@ describe("decoding a message", () => {
   it("decodes messages with a negative shift value", () => {
     const message = "kcviojh";
     const shift = -5;
-    const actual = caesar(message, shift);
+    const actual = caesar(message, shift, false);
     const expected = "phantom";
     expect(actual).to.equal(expected);
   });
@@ -74,7 +74,7 @@ describe("decoding a message", () => {
   it("should leaves spaces and other symbols as is", () => {
     const message = "n fr nwts rfs.";
     const shift = 5;
-    const actual = caesar(message, shift);
+    const actual = caesar(message, shift, false);
     const expected = "i am iron man.";
     expect(actual).to.equal(expected);
   });
@@ -83,7 +83,7 @@ describe("decoding a message", () => {
   it("should ignore capital letters", () => {
     const message = "N Fr NWts RFS";
     const shift = 5;
-    const actual = caesar(message, shift);
+    const actual = caesar(message, shift, false);
     const expected = "i am iron man";
     expect(actual).to.equal(expected);
   });
@@ -95,42 +95,42 @@ describe("decoding a message", () => {
   it("should wrap around the alphabet for letters at the end of the alphabet", () => {
     const message = "umfsytr xywdpjw";
     const shift = 5;
-    const actual = caesar(message, shift);
+    const actual = caesar(message, shift, false);
     const expected = "phantom stryker";
     expect(actual).to.equal(expected);
   });
+});
 
-  //tests for outside cases:
-  //"If the shift value isn't present,
-  //equal to 0, less than -25, or greater than 25,
-  //the function should return false."
-  describe("catching errors", () => {
-    it("returns false if there is no input for the shift", () => {
-      const message = "i am iron man";
-      const shift = null;
-      const actual = caesar(message, shift);
-      expect(actual).to.be.false;
-    });
+//tests for outside cases:
+//"If the shift value isn't present,
+//equal to 0, less than -25, or greater than 25,
+//the function should return false."
+describe("catching errors", () => {
+  it("returns false if there is no input for the shift", () => {
+    const message = "i am iron man";
+    const shift = null;
+    const actual = caesar(message, shift);
+    expect(actual).to.be.false;
+  });
 
-    it("returns false if the input for shift is 0", () => {
-      const message = "i am iron man";
-      const shift = 0;
-      const actual = caesar(message, shift);
-      expect(actual).to.be.false;
-    });
+  it("returns false if the input for shift is 0", () => {
+    const message = "i am iron man";
+    const shift = 0;
+    const actual = caesar(message, shift);
+    expect(actual).to.be.false;
+  });
 
-    it("returns false if the shift is a value less than -25", () => {
-      const message = "i am iron man";
-      const shift = -26;
-      const actual = caesar(message, shift);
-      expect(actual).to.be.false;
-    });
+  it("returns false if the shift is a value less than -25", () => {
+    const message = "i am iron man";
+    const shift = -26;
+    const actual = caesar(message, shift);
+    expect(actual).to.be.false;
+  });
 
-    it("returns false if the shift value is greater than 25", () => {
-      const message = "i am iron man";
-      const shift = 26;
-      const actual = caesar(message, shift);
-      expect(actual).to.be.false;
-    });
+  it("returns false if the shift value is greater than 25", () => {
+    const message = "i am iron man";
+    const shift = 26;
+    const actual = caesar(message, shift);
+    expect(actual).to.be.false;
   });
 });
